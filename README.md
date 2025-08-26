@@ -22,6 +22,7 @@ Required: Node version 18+,  MYSQL installed  on device.
 1. Clone repository
 2. Cd to front-react and run npm install
 3. Cd to back-node and run npm install
+4. Go to back-node and create .env file and paste values you received from me.
 
 ## Running project:
 1. cd front-react && npm start

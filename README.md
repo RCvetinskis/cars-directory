@@ -13,9 +13,19 @@ Fully responsive and styled with AntD components.
 3. Optionally SCSS (https://sass-lang.com)
 
 ## Backend:
-1. Ruby on Rails or Node.js
+1.Node.js
 ## Database:
-1. MySQL or PostgreSQL
+1. MySQL
+
+### Setup:
+Required: Node version 18+,  MYSQL installed  on device. 
+1. Clone repository
+2. Cd to front-react and run npm install
+3. Cd to back-node and run npm install
+
+## Running project:
+1. cd front-react && npm start
+2. cd back-node && npx nodemon app/index.js
 
 
 

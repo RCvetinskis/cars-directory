@@ -6,9 +6,9 @@ const sequelize = new Sequelize(
   process.env.DB_USER,
   process.env.DB_PASS,
   {
-    host: "cars-directory-cars-directory.d.aivencloud.com",
+    host: process.env.DB_HOST,
     dialect: "mysql",
-    port: 15402,
+    port: process.env.DB_PORT,
     logging: false,
     dialectOptions: {
       ssl: {

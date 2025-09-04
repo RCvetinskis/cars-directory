@@ -12,13 +12,13 @@ function App() {
     <div className="App" style={{ minHeight: '100vh', backgroundColor: '#f0f2f5' }}>
       <div style={{ padding: '16px 24px', backgroundColor: 'white', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
         <Space>
-          <Button 
+          <Button
             type={currentView === 'list' ? 'primary' : 'default'}
             onClick={() => setCurrentView('list')}
           >
             Cars List
           </Button>
-          <Button 
+          <Button
             type={currentView === 'pamir' ? 'primary' : 'default'}
             onClick={() => setCurrentView('pamir')}
           >
@@ -26,7 +26,7 @@ function App() {
           </Button>
         </Space>
       </div>
-      
+
       {currentView === 'list' && <CarsList />}
       {currentView === 'pamir' && <PamirCarForm />}
     </div>

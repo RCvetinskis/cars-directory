@@ -6,28 +6,28 @@ const Car = sequelize.define(
   {
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     model: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     year: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: true
     },
     color: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     price: {
       type: DataTypes.DECIMAL(10, 2),
-      allowNull: true,
-    },
+      allowNull: true
+    }
   },
   {
     tableName: "cars",
-    timestamps: true,
+    timestamps: true
   }
 );
 

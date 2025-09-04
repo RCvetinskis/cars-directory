@@ -1,18 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const { 
-  hello, 
-  getAllCars, 
-  getCarById, 
-  createCar, 
-  updateCar, 
-  deleteCar 
-} = require('../controller/cars');
 
-// Test route
+const {
+  hello,
+  getAllCars,
+  getCarById,
+  createCar,
+  updateCar,
+  deleteCar
+} = require('../components/CarList');
+
 router.get('/', hello);
 
-// Cars routes
 router.get('/cars', getAllCars);
 router.get('/cars/:id', getCarById);
 router.post('/cars', createCar);

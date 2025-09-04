@@ -15,7 +15,7 @@ import {
   SaveOutlined,
   ClearOutlined
 } from '@ant-design/icons';
-import axios from 'axios';
+import api from '../api';
 
 const { Title } = Typography;
 
@@ -26,22 +26,21 @@ const PamirCarForm = () => {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      // Convert year and price to numbers
       const carData = {
-        ...values,
-        year: parseInt(values.year),
-        price: parseFloat(values.price)
+        name: values.name,
+        model: values.model,
+        year: values.year ? Number(values.year) : null,
+        color: values.color || null,
+        price: values.price != null ? Number(values.price) : null
       };
 
-      // Replace with actual API call
-      // const response = await axios.post('http://localhost:3001/api/cars', carData);
-      
-      // For now, just show success message
+      await api.post('/cars', carData);
+
       message.success(`Car "${values.name} ${values.model}" created successfully!`);
       form.resetFields();
     } catch (error) {
-      message.error('Failed to create car. Please try again.');
       console.error('Error creating car:', error);
+      message.error(error?.response?.data?.error || 'Failed to create car. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -83,10 +82,7 @@ const PamirCarForm = () => {
                   { max: 50, message: 'Brand must be less than 50 characters' }
                 ]}
               >
-                <Input 
-                  placeholder="e.g., Toyota, BMW, Tesla" 
-                  style={{ borderRadius: '6px' }}
-                />
+                <Input placeholder="e.g., Toyota, BMW, Tesla" style={{ borderRadius: '6px' }} />
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -99,10 +95,7 @@ const PamirCarForm = () => {
                   { max: 50, message: 'Model must be less than 50 characters' }
                 ]}
               >
-                <Input 
-                  placeholder="e.g., Camry, X5, Model S" 
-                  style={{ borderRadius: '6px' }}
-                />
+                <Input placeholder="e.g., Camry, X5, Model S" style={{ borderRadius: '6px' }} />
               </Form.Item>
             </Col>
           </Row>
@@ -125,10 +118,10 @@ const PamirCarForm = () => {
                   }
                 ]}
               >
-                <Input 
-                  type="number" 
+                <Input
+                  type="number"
                   placeholder={`e.g., ${new Date().getFullYear()}`}
-                  min="1900" 
+                  min="1900"
                   max={new Date().getFullYear() + 1}
                   style={{ borderRadius: '6px' }}
                 />
@@ -144,10 +137,7 @@ const PamirCarForm = () => {
                   { max: 30, message: 'Color must be less than 30 characters' }
                 ]}
               >
-                <Input 
-                  placeholder="e.g., Red, Blue, Silver" 
-                  style={{ borderRadius: '6px' }}
-                />
+                <Input placeholder="e.g., Red, Blue, Silver" style={{ borderRadius: '6px' }} />
               </Form.Item>
             </Col>
           </Row>
@@ -167,11 +157,11 @@ const PamirCarForm = () => {
               }
             ]}
           >
-            <Input 
-              type="number" 
-              placeholder="e.g., 25000" 
-              prefix="$" 
-              min="1" 
+            <Input
+              type="number"
+              placeholder="e.g., 25000"
+              prefix="$"
+              min="1"
               max="10000000"
               style={{ borderRadius: '6px' }}
             />
@@ -185,7 +175,7 @@ const PamirCarForm = () => {
                 loading={loading}
                 icon={<SaveOutlined />}
                 size="large"
-                style={{ 
+                style={{
                   backgroundColor: '#52c41a',
                   borderColor: '#52c41a',
                   minWidth: '140px',
@@ -200,10 +190,7 @@ const PamirCarForm = () => {
                 onClick={handleReset}
                 icon={<ClearOutlined />}
                 size="large"
-                style={{ 
-                  minWidth: '120px',
-                  borderRadius: '6px'
-                }}
+                style={{ minWidth: '120px', borderRadius: '6px' }}
               >
                 Clear Form
               </Button>
@@ -211,10 +198,10 @@ const PamirCarForm = () => {
           </Form.Item>
         </Form>
 
-        <div style={{ 
-          marginTop: '24px', 
-          padding: '16px', 
-          backgroundColor: '#f6ffed', 
+        <div style={{
+          marginTop: '24px',
+          padding: '16px',
+          backgroundColor: '#f6ffed',
           border: '1px solid #b7eb8f',
           borderRadius: '6px',
           textAlign: 'center'

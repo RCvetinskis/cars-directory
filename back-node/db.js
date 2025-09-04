@@ -11,16 +11,14 @@ const sequelize = new Sequelize(
     port: process.env.DB_PORT,
     logging: false,
     dialectOptions: {
-      ssl: {
-        rejectUnauthorized: false,
-      },
-    },
+      ssl: { rejectUnauthorized: false }
+    }
   }
 );
 
 sequelize
   .authenticate()
-  .then(() => console.log("Connected to aiven MySQL via Sequelize"))
+  .then(() => console.log("🔌 Connected to MySQL (Aiven) via Sequelize"))
   .catch((err) => console.error("Sequelize connection error:", err));
 
 module.exports = sequelize;
